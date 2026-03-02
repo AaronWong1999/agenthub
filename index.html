@@ -4,234 +4,236 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>edgeX Agent Hub — AI 时代的链上交易基础设施</title>
-<meta name="description" content="面向开发者和 Vibe Coder 的 AI 时代链上交易基础设施，在 EDGE Chain 上安全高效地接入去中心化交易能力。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0a0c;--bg2:#111113;--bg3:#18181b;--bg4:#1f1f23;
-  --accent:#00e8a2;--accent2:#00c48c;--accent-glow:rgba(0,232,162,.08);
-  --blue:#3b82f6;--purple:#8b5cf6;
-  --white:#fff;--t1:#f0f0f2;--t2:#9a9aa8;--t3:#5a5a68;--t4:#2e2e38;
-  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
-  --card:rgba(255,255,255,.02);
-  --font:'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;
+  --bg:#141414;
+  --green:#00FF6A;
+  --green-d:#00e05e;
+  --card:#1c1c1c;
+  --card2:#222;
+  --border:rgba(255,255,255,.08);
+  --border2:rgba(255,255,255,.12);
+  --white:#fff;
+  --t1:#f2f2f2;
+  --t2:#999;
+  --t3:#666;
+  --t4:#444;
+  --black:#000;
+  --font:'IBM Plex Sans','Noto Sans SC',-apple-system,system-ui,sans-serif;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-::selection{background:var(--accent);color:var(--bg)}
+::selection{background:var(--green);color:var(--black)}
 
 /* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(10,10,12,.75);backdrop-filter:blur(24px)saturate(1.8);border-bottom:1px solid var(--border)}
-.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px}
-.nav-logo .mark{width:28px;height:28px;background:linear-gradient(135deg,var(--accent),var(--blue));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--bg);letter-spacing:0}
-.nav-mid{display:flex;gap:4px;list-style:none}
-.nav-mid a{padding:7px 15px;font-size:13.5px;color:var(--t2);font-weight:500;border-radius:8px;transition:.2s}
-.nav-mid a:hover{color:var(--t1);background:rgba(255,255,255,.04)}
-.nav-mid a.on{color:var(--accent)}
-.nav-r{display:flex;gap:10px;align-items:center}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px}
+/* transparent on hero (green bg), dark after scroll */
+.nav.scrolled{background:rgba(20,20,20,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px;color:var(--black);transition:color .3s}
+.nav.scrolled .nav-logo{color:var(--white)}
+.nav-logo svg{width:22px;height:22px}
 
-/* ===== BUTTONS ===== */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-weight:600;border:none;cursor:pointer;transition:all .3s}
-.btn-pill{padding:13px 32px;font-size:15px;border-radius:999px}
-.btn-w{background:var(--white);color:var(--bg)}
-.btn-w:hover{background:#e4e4e4;transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,255,255,.08)}
-.btn-o{background:transparent;color:var(--t1);border:1px solid var(--t4)}
-.btn-o:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-.btn-sm{padding:7px 18px;font-size:13px;border-radius:8px}
-.btn-accent{padding:7px 18px;font-size:13px;border-radius:8px;background:var(--accent);color:var(--bg);font-weight:700}
-.btn-accent:hover{background:var(--accent2)}
+/* pill nav group (matches edgeX official) */
+.nav-pill{display:flex;align-items:center;background:rgba(255,255,255,.12);border-radius:999px;padding:4px;gap:2px;backdrop-filter:blur(8px)}
+.nav.scrolled .nav-pill{background:rgba(255,255,255,.06)}
+.nav-pill a{padding:8px 20px;font-size:14px;font-weight:500;border-radius:999px;transition:all .2s}
+.nav-pill a.ghost{color:rgba(0,0,0,.7)}
+.nav.scrolled .nav-pill a.ghost{color:var(--t2)}
+.nav-pill a.ghost:hover{color:var(--black);background:rgba(255,255,255,.1)}
+.nav.scrolled .nav-pill a.ghost:hover{color:var(--white);background:rgba(255,255,255,.08)}
+.nav-pill a.solid{background:var(--white);color:var(--black);font-weight:600}
+.nav-pill a.solid:hover{background:#e8e8e8}
 
-/* ===== HERO ===== */
-.hero{position:relative;padding:0 40px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;pointer-events:none}
-.hero-bg canvas{width:100%;height:100%}
-/* Gradient overlay at bottom of hero */
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(transparent,var(--bg));pointer-events:none;z-index:1}
+.nav-r{display:flex;gap:12px;align-items:center}
+.nav-r .icon-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,.15);color:rgba(0,0,0,.6);transition:all .3s}
+.nav.scrolled .nav-r .icon-btn{border-color:var(--border);color:var(--t2)}
+.nav-r .icon-btn:hover{background:rgba(255,255,255,.1)}
+.nav-r .icon-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}
 
-.hero h1{
-  position:relative;z-index:2;
-  font-size:clamp(52px,8vw,100px);font-weight:900;letter-spacing:-3px;line-height:1;
-  margin-bottom:28px;
-  background:linear-gradient(180deg,#ffffff 20%,rgba(255,255,255,.45) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-desc{position:relative;z-index:2;font-size:clamp(15px,1.4vw,18px);color:var(--t2);max-width:580px;line-height:1.8;margin:0 auto 48px}
-.hero-btns{position:relative;z-index:2;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+/* ===== HERO — GREEN BACKGROUND (edgeX signature) ===== */
+.hero{position:relative;background:var(--green);padding:160px 48px 100px;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+/* Grid pattern overlay */
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+/* Horizontal accent lines */
+.hero::before{content:'';position:absolute;top:60px;left:0;right:0;height:1px;background:rgba(0,0,0,.06)}
+.hero::after{content:'';position:absolute;top:100px;left:0;right:0;height:1px;background:rgba(0,0,0,.04)}
 
-/* ===== SHARED SECTION ===== */
-.sec{padding:120px 40px;max-width:1200px;margin:0 auto}
-.sec-label{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:3.5px;color:var(--accent);margin-bottom:20px}
-.sec-title{font-size:clamp(30px,3.6vw,48px);font-weight:800;letter-spacing:-.8px;line-height:1.2;margin-bottom:20px}
-.sec-desc{font-size:16px;color:var(--t2);max-width:540px;line-height:1.85}
+.hero-sub{font-size:15px;color:rgba(0,0,0,.5);font-weight:500;letter-spacing:.5px;margin-bottom:16px}
+.hero h1{font-size:clamp(48px,7vw,84px);font-weight:700;color:var(--black);letter-spacing:-2px;line-height:1.05;margin-bottom:36px;max-width:700px}
+.hero-desc{font-size:16px;color:rgba(0,0,0,.55);max-width:520px;line-height:1.8;margin-bottom:40px}
 
-/* Divider line */
-.divider{max-width:1200px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent 0%,var(--border2) 50%,transparent 100%)}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:64px}
+.btn-dark{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--black);color:var(--white);font-size:15px;font-weight:600;font-family:var(--font);border:none;border-radius:999px;cursor:pointer;transition:all .25s}
+.btn-dark:hover{background:#222;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-dark svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn-outline-dark{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:var(--black);font-size:15px;font-weight:600;font-family:var(--font);border:1.5px solid rgba(0,0,0,.2);border-radius:999px;cursor:pointer;transition:all .25s}
+.btn-outline-dark:hover{border-color:rgba(0,0,0,.5);transform:translateY(-2px)}
+
+/* Stats row on hero */
+.hero-stats{display:flex;gap:56px;flex-wrap:wrap}
+.hero-stats .st{display:flex;flex-direction:column;gap:2px}
+.hero-stats .st-label{font-size:13px;color:rgba(0,0,0,.4);font-weight:500}
+.hero-stats .st-val{font-size:28px;font-weight:700;color:var(--black);letter-spacing:-.5px}
+
+/* ===== DARK SECTIONS ===== */
+.sec{padding:120px 48px;max-width:1200px;margin:0 auto}
+.sec-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--green);margin-bottom:20px}
+.sec-title{font-size:clamp(30px,3.5vw,46px);font-weight:700;letter-spacing:-.8px;line-height:1.2;margin-bottom:20px;color:var(--t1)}
+.sec-desc{font-size:16px;color:var(--t2);max-width:520px;line-height:1.85}
 
 /* ===== VISION ===== */
 .vision{display:flex;gap:80px;align-items:flex-start}
-.vision-l{flex:1;max-width:460px;position:sticky;top:120px}
+.vision-l{flex:1;max-width:440px}
 .vision-r{flex:1}
-.v-item{padding:28px 0;border-bottom:1px solid var(--border);display:flex;gap:24px;align-items:flex-start;transition:all .3s}
+.v-item{padding:24px 0;border-bottom:1px solid var(--border);display:flex;gap:24px;transition:all .3s}
 .v-item:last-child{border-bottom:none}
 .v-item:hover{padding-left:8px}
-.v-num{font-size:26px;font-weight:800;min-width:44px;background:linear-gradient(135deg,var(--accent),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.v-body h3{font-size:16px;font-weight:600;margin-bottom:12px;letter-spacing:-.2px}
-.v-pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{padding:5px 14px;font-size:12px;font-weight:500;color:var(--t2);background:var(--card);border:1px solid var(--border);border-radius:8px;transition:all .25s;backdrop-filter:blur(4px)}
-.v-item:hover .pill{border-color:rgba(0,232,162,.15);color:var(--t1)}
+.v-num{font-size:24px;font-weight:700;color:var(--green);min-width:40px}
+.v-body h3{font-size:16px;font-weight:600;margin-bottom:10px}
+.v-pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{padding:5px 13px;font-size:12px;font-weight:500;color:var(--t2);background:var(--card);border:1px solid var(--border);border-radius:8px}
 
 /* ===== TOOLS ===== */
 .tools-hd{text-align:center;margin-bottom:56px}
 .tools-hd .sec-desc{margin:0 auto}
-.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 
-.t-card{
-  position:relative;background:var(--bg2);border:1px solid var(--border);
-  border-radius:20px;padding:44px 36px;overflow:hidden;transition:all .4s;
-}
-/* Glow top border on hover */
-.t-card::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .4s;filter:blur(.5px)}
-.t-card:hover{border-color:rgba(0,232,162,.12);transform:translateY(-4px);box-shadow:0 12px 48px rgba(0,232,162,.04)}
+.t-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s}
+.t-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+/* green top line */
+.t-card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:2px;background:var(--green);opacity:0;transition:opacity .4s}
 .t-card:hover::before{opacity:1}
 
-/* Corner accents */
-.t-card .corner{position:absolute;width:24px;height:24px;opacity:.15;transition:opacity .4s}
-.t-card:hover .corner{opacity:.4}
-.corner-tl{top:14px;left:14px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);border-radius:4px 0 0 0}
-.corner-tr{top:14px;right:14px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);border-radius:0 4px 0 0}
-.corner-bl{bottom:14px;left:14px;border-bottom:2px solid var(--accent);border-left:2px solid var(--accent);border-radius:0 0 0 4px}
-.corner-br{bottom:14px;right:14px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent);border-radius:0 0 4px 0}
-
-.t-card .bar{width:36px;height:3px;border-radius:3px;margin-bottom:22px;background:linear-gradient(90deg,var(--accent),var(--blue))}
-.t-card h3{font-size:22px;font-weight:700;margin-bottom:14px;letter-spacing:-.3px}
-.t-card>p{font-size:14.5px;color:var(--t2);line-height:1.8;margin-bottom:24px}
-.t-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.t-tag{padding:6px 14px;font-size:11.5px;font-weight:500;color:var(--t2);background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px}
-.t-link{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:var(--accent);transition:gap .25s}
-.t-link:hover{gap:12px}
-.t-link svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.t-card .bar{width:32px;height:3px;background:var(--green);border-radius:3px;margin-bottom:20px}
+.t-card h3{font-size:22px;font-weight:700;margin-bottom:12px;letter-spacing:-.3px}
+.t-card>p{font-size:14px;color:var(--t2);line-height:1.8;margin-bottom:20px}
+.t-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.t-tag{padding:5px 12px;font-size:11.5px;font-weight:500;color:var(--t2);background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px}
+.t-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--green);transition:gap .2s}
+.t-link:hover{gap:10px}
+.t-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ===== COMING SOON ===== */
 .coming-hd{text-align:center;margin-bottom:56px}
 .coming-hd .sec-desc{margin:0 auto}
-.coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 
-.c-card{
-  position:relative;background:var(--bg2);border:1px solid var(--border);
-  border-radius:20px;padding:40px 28px;text-align:center;
-  overflow:hidden;transition:all .35s;
-}
-.c-card:hover{border-color:rgba(0,232,162,.12);transform:translateY(-3px);box-shadow:0 8px 36px rgba(0,0,0,.3)}
-
-/* Corner accents */
-.c-card .corner{position:absolute;width:18px;height:18px;opacity:.12;transition:opacity .3s}
-.c-card:hover .corner{opacity:.35}
-
-/* Subtle gradient bg on hover */
-.c-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,232,162,.04),transparent 70%);opacity:0;transition:opacity .35s;pointer-events:none}
+.c-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 28px;text-align:center;transition:all .35s;position:relative;overflow:hidden}
+.c-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+/* Subtle green glow on hover */
+.c-card::after{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(0,255,106,.04),transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
 .c-card:hover::after{opacity:1}
 
-.c-num{font-size:56px;font-weight:900;line-height:1;margin-bottom:18px;background:linear-gradient(180deg,var(--t4) 0%,rgba(255,255,255,.02) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1}
+.c-num{font-size:52px;font-weight:800;line-height:1;margin-bottom:16px;color:var(--t4)}
 .c-card h3{font-size:17px;font-weight:600;margin-bottom:10px;position:relative;z-index:1}
 .c-card>p{font-size:13.5px;color:var(--t2);line-height:1.75;position:relative;z-index:1}
 
 /* ===== WHY ===== */
 .why{display:flex;gap:80px;align-items:flex-start}
 .why-l{flex:0 0 380px}
-.why-r{flex:1;display:flex;flex-direction:column;gap:36px}
+.why-r{flex:1;display:flex;flex-direction:column;gap:24px}
+.w-item{padding:24px 28px;background:var(--card);border:1px solid var(--border);border-radius:16px;border-left:3px solid var(--green);transition:all .3s}
+.w-item:hover{border-color:var(--border2);border-left-color:var(--green);background:rgba(0,255,106,.02);transform:translateX(4px)}
+.w-item h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.w-item p{font-size:14px;color:var(--t2);line-height:1.8}
 
-.w-item{
-  position:relative;padding:28px 28px 28px 32px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:16px;border-left:3px solid var(--accent);
-  transition:all .3s;
-}
-.w-item:hover{background:rgba(0,232,162,.02);border-color:rgba(0,232,162,.12);border-left-color:var(--accent);transform:translateX(4px)}
-.w-item h3{font-size:17px;font-weight:700;margin-bottom:10px}
-.w-item p{font-size:14.5px;color:var(--t2);line-height:1.8}
-
-/* ===== CTA ===== */
-.cta{padding:140px 40px;text-align:center;position:relative;overflow:hidden}
-/* Background glow */
-.cta::before{content:'';position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(0,232,162,.05) 0%,rgba(59,130,246,.03) 40%,transparent 70%);pointer-events:none}
-.cta h2{font-size:clamp(32px,4.5vw,52px);font-weight:800;letter-spacing:-1px;margin-bottom:40px;position:relative;z-index:1}
-.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;margin-bottom:44px}
-.cta-links{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-.cta-links a{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--t3);font-weight:500;transition:.2s}
-.cta-links a:hover{color:var(--t1)}
+/* ===== CTA — GREEN BACKGROUND (bookend with hero) ===== */
+.cta{background:var(--green);padding:120px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.cta h2{font-size:clamp(32px,4.5vw,52px);font-weight:700;color:var(--black);letter-spacing:-1px;margin-bottom:36px;position:relative;z-index:1}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;margin-bottom:40px}
+.cta-links{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.cta-links a{display:flex;align-items:center;gap:7px;font-size:14px;color:rgba(0,0,0,.45);font-weight:500;transition:color .2s}
+.cta-links a:hover{color:var(--black)}
 .cta-links a svg{width:18px;height:18px;fill:currentColor}
 
 /* ===== FOOTER ===== */
-.footer{padding:28px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
-.footer-l{font-size:12.5px;color:var(--t3)}
+.footer{padding:28px 48px;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.footer-l{font-size:12px;color:var(--t3)}
 .footer-r{display:flex;gap:24px}
-.footer-r a{font-size:12.5px;color:var(--t3);transition:.2s}
+.footer-r a{font-size:12px;color:var(--t3);transition:color .2s}
 .footer-r a:hover{color:var(--t1)}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
   .vision,.why{flex-direction:column;gap:48px}
-  .vision-l{position:static}
   .why-l{flex:none}
   .tools-grid,.coming-grid{grid-template-columns:1fr}
 }
 @media(max-width:768px){
-  .nav{padding:0 20px}.nav-mid{display:none}
-  .hero{padding:0 20px}
+  .nav{padding:0 20px}
+  .nav-pill{display:none}
+  .hero{padding:120px 20px 80px;min-height:auto}
+  .hero h1{font-size:40px}
   .sec{padding:80px 20px}
   .cta{padding:80px 20px}
-  .hero-btns,.cta-btns{flex-direction:column;align-items:center}
+  .hero-btns,.cta-btns{flex-direction:column;align-items:flex-start}
+  .hero-stats{flex-direction:column;gap:24px}
   .cta-links{gap:20px}
   .footer{flex-direction:column;gap:14px;text-align:center;padding:28px 20px}
 }
 
 /* ===== REVEAL ===== */
-.rv{opacity:0;transform:translateY(36px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
 .rv.show{opacity:1;transform:none}
-.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
 </style>
 </head>
 <body>
 
 <!-- ===== NAV ===== -->
-<nav class="nav">
+<nav class="nav" id="nav">
   <a href="https://www.edgex.exchange" class="nav-logo">
-    <span class="mark">eX</span>
+    <svg viewBox="0 0 24 28" fill="currentColor"><path d="M12 0L0 7v14l12 7 12-7V7L12 0zm0 2.4l9.6 5.6v11.2L12 24.8 2.4 19.2V8L12 2.4z"/><path d="M12 8l-6 3.5v7L12 22l6-3.5v-7L12 8z" opacity=".3"/></svg>
     edgeX
   </a>
-  <ul class="nav-mid">
-    <li><a href="https://pro.edgex.exchange/en-US/trade">永续合约</a></li>
-    <li><a href="https://pro.edgex.exchange/en-US/spot">现货</a></li>
-    <li><a href="https://pro.edgex.exchange/en-US/prediction">预测</a></li>
-    <li><a href="https://pro.edgex.exchange/en-US/xp">XP</a></li>
-    <li><a href="https://pro.edgex.exchange/en-US/vault">eStrategy</a></li>
-    <li><a href="#" class="on">Agent Hub</a></li>
-    <li><a href="https://pro.edgex.exchange/en-US/rewards">Earn</a></li>
-  </ul>
+  <div class="nav-pill">
+    <a href="#vision" class="ghost">Community</a>
+    <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="ghost">Developers</a>
+    <a href="https://pro.edgex.exchange" class="solid">Launch App</a>
+  </div>
   <div class="nav-r">
-    <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="btn btn-o btn-sm">文档</a>
-    <a href="https://pro.edgex.exchange" class="btn btn-accent">启动应用</a>
+    <a href="#" class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg></a>
+    <a href="#" class="icon-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (GREEN) ===== -->
 <section class="hero">
-  <div class="hero-bg"><canvas id="circuitCanvas"></canvas></div>
+  <div class="hero-grid"></div>
 
-  <h1 class="rv">Agent Hub</h1>
-
-  <p class="hero-desc rv rv-d1">
-    面向开发者和 Vibe Coder 的 AI 时代链上交易基础设施——<br>
-    安全、高效地接入去中心化交易能力。
+  <div class="hero-sub rv">面向开发者的 AI 交易基础设施</div>
+  <h1 class="rv rv-d1">Agent Hub</h1>
+  <p class="hero-desc rv rv-d2">
+    面向开发者和 Vibe Coder 的 AI 时代链上交易基础设施——安全、高效地接入去中心化交易能力。
   </p>
 
   <div class="hero-btns rv rv-d2">
-    <a href="#tools" class="btn btn-pill btn-w">开始构建</a>
-    <a href="#vision" class="btn btn-pill btn-o">了解更多</a>
+    <a href="#tools" class="btn-dark">
+      <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      开始构建
+    </a>
+    <a href="#vision" class="btn-outline-dark">了解更多</a>
+  </div>
+
+  <div class="hero-stats rv rv-d3">
+    <div class="st">
+      <div class="st-label">24h 交易量</div>
+      <div class="st-val">$2.05B</div>
+    </div>
+    <div class="st">
+      <div class="st-label">累计交易量</div>
+      <div class="st-val">$803.26B</div>
+    </div>
+    <div class="st">
+      <div class="st-label">地址数</div>
+      <div class="st-val">354,295</div>
+    </div>
   </div>
 </section>
 
@@ -240,12 +242,12 @@ a{text-decoration:none;color:inherit}
   <div class="vision">
     <div class="vision-l rv">
       <div class="sec-label">我们的愿景</div>
-      <h2 class="sec-title">构建 Vibe Trading<br>时代的基础设施</h2>
+      <h2 class="sec-title">构建 Vibe Trading 时代的基础设施</h2>
       <p class="sec-desc">
         当 AI 成为每个人的交易助手，当开发者可以用自然语言构建交易策略，链上交易市场将迎来全新的范式。
       </p>
-      <p class="sec-desc" style="margin-top:18px">
-        我们坚信这个未来。因此，我们正在构建一套完整的基础设施——从底层的 ZK 结算和交易能力，到上层的技能市场和开发者生态——让每一个想拥抱 AI 交易的人，都能在 EDGE Chain 上找到所需的一切。
+      <p class="sec-desc" style="margin-top:16px">
+        我们正在构建一套完整的基础设施——从底层的 ZK 结算和交易引擎，到上层的技能市场和开发者生态——让每一个想拥抱 AI 交易的人，都能在这里找到所需的一切。
       </p>
     </div>
     <div class="vision-r">
@@ -253,50 +255,33 @@ a{text-decoration:none;color:inherit}
         <div class="v-num">01</div>
         <div class="v-body">
           <h3>开发者生态</h3>
-          <div class="v-pills">
-            <span class="pill">孵化计划</span>
-            <span class="pill">社区</span>
-            <span class="pill">开发支持</span>
-          </div>
+          <div class="v-pills"><span class="pill">孵化计划</span><span class="pill">社区</span><span class="pill">开发支持</span></div>
         </div>
       </div>
       <div class="v-item rv rv-d1">
         <div class="v-num">02</div>
         <div class="v-body">
           <h3>技能市场</h3>
-          <div class="v-pills">
-            <span class="pill">交易策略</span>
-            <span class="pill">风险管理</span>
-            <span class="pill">市场洞察</span>
-          </div>
+          <div class="v-pills"><span class="pill">交易策略</span><span class="pill">风险管理</span><span class="pill">市场洞察</span></div>
         </div>
       </div>
       <div class="v-item rv rv-d2">
         <div class="v-num">03</div>
         <div class="v-body">
           <h3>开发者工具</h3>
-          <div class="v-pills">
-            <span class="pill">MCP 工具</span>
-            <span class="pill">API</span>
-          </div>
+          <div class="v-pills"><span class="pill">MCP 工具</span><span class="pill">API</span></div>
         </div>
       </div>
       <div class="v-item rv rv-d3">
         <div class="v-num">04</div>
         <div class="v-body">
           <h3>edgeX 核心能力</h3>
-          <div class="v-pills">
-            <span class="pill">自托管</span>
-            <span class="pill">ZK 结算</span>
-            <span class="pill">CLOB 引擎</span>
-          </div>
+          <div class="v-pills"><span class="pill">自托管</span><span class="pill">ZK 结算</span><span class="pill">CLOB 引擎</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- ===== DEVELOPER TOOLS ===== -->
 <section class="sec" id="tools">
@@ -305,49 +290,27 @@ a{text-decoration:none;color:inherit}
     <h2 class="sec-title">开发者工具</h2>
     <p class="sec-desc">通过 MCP 工具和 API，赋予你的 AI Agent 专业的链上交易能力。</p>
   </div>
-
   <div class="tools-grid">
     <div class="t-card rv">
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-tr"></div>
-      <div class="corner corner-bl"></div>
-      <div class="corner corner-br"></div>
       <div class="bar"></div>
       <h3>MCP 工具</h3>
       <p>原生 Model Context Protocol 支持——让 Claude、GPT 等 AI 模型直接调用 edgeX 的去中心化交易能力，链上 ZK 结算，全程自托管。</p>
       <div class="t-tags">
-        <span class="t-tag">AI 原生</span>
-        <span class="t-tag">Claude / GPT</span>
-        <span class="t-tag">实时行情</span>
-        <span class="t-tag">交易执行</span>
+        <span class="t-tag">AI 原生</span><span class="t-tag">Claude / GPT</span><span class="t-tag">实时行情</span><span class="t-tag">交易执行</span>
       </div>
-      <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="t-link">
-        查看文档 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
+      <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="t-link">查看文档 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
-
     <div class="t-card rv rv-d1">
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-tr"></div>
-      <div class="corner corner-bl"></div>
-      <div class="corner corner-br"></div>
       <div class="bar"></div>
       <h3>API</h3>
       <p>完整的 REST 和 WebSocket 接口，覆盖永续合约、现货、eStrategy 策略金库及所有交易能力——延迟低于 10ms，吞吐 200K+ TPS。</p>
       <div class="t-tags">
-        <span class="t-tag">REST + WebSocket</span>
-        <span class="t-tag">永续 / 现货</span>
-        <span class="t-tag">低延迟</span>
-        <span class="t-tag">高可用</span>
+        <span class="t-tag">REST + WebSocket</span><span class="t-tag">永续 / 现货</span><span class="t-tag">低延迟</span><span class="t-tag">高可用</span>
       </div>
-      <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="t-link">
-        API 文档 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
+      <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="t-link">API 文档 <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- ===== COMING SOON ===== -->
 <section class="sec" id="coming">
@@ -356,33 +319,24 @@ a{text-decoration:none;color:inherit}
     <h2 class="sec-title">更多能力，正在路上</h2>
     <p class="sec-desc">技能市场和开发者社区即将上线。</p>
   </div>
-
   <div class="coming-grid">
     <div class="c-card rv">
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-br"></div>
       <div class="c-num">01</div>
       <h3>技能市场</h3>
       <p>即插即用的 AI 能力模块：交易策略、风险管理、市场洞察——在 EDGE Chain 上自由组合，无需许可。</p>
     </div>
     <div class="c-card rv rv-d1">
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-br"></div>
       <div class="c-num">02</div>
       <h3>开发者社区</h3>
       <p>技术支持、开源协作、策略回测基础设施和最佳实践分享——链上 Agent 构建者的大本营。</p>
     </div>
     <div class="c-card rv rv-d2">
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-br"></div>
       <div class="c-num">03</div>
       <h3>项目孵化</h3>
       <p>技术支持、品牌曝光、投资孵化——为杰出的 AI 交易项目提供全方位加速。</p>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- ===== WHY US ===== -->
 <section class="sec" id="why">
@@ -405,12 +359,13 @@ a{text-decoration:none;color:inherit}
   </div>
 </section>
 
-<!-- ===== CTA ===== -->
+<!-- ===== CTA (GREEN) ===== -->
 <section class="cta">
+  <div class="cta-grid"></div>
   <h2 class="rv">一起构建 AI 交易的未来</h2>
   <div class="cta-btns rv rv-d1">
-    <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="btn btn-pill btn-w">开始构建</a>
-    <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="btn btn-pill btn-o">查看 API 文档</a>
+    <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="btn-dark">开始构建</a>
+    <a href="https://edgex-1.gitbook.io/edgeX-documentation" class="btn-outline-dark">查看 API 文档</a>
   </div>
   <div class="cta-links rv rv-d2">
     <a href="https://github.com/AaronTYin" target="_blank">
@@ -440,71 +395,16 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-/* ===== CIRCUIT BOARD CANVAS ===== */
-(function(){
-  const c=document.getElementById('circuitCanvas'),x=c.getContext('2d');
-  let w,h,segs=[];
+/* NAV scroll effect: transparent on green hero, dark after */
+const nav=document.getElementById('nav');
+const hero=document.querySelector('.hero');
+function checkNav(){
+  const heroBottom=hero.getBoundingClientRect().bottom;
+  nav.classList.toggle('scrolled',heroBottom<64);
+}
+addEventListener('scroll',checkNav);checkNav();
 
-  function resize(){
-    w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;
-    segs=[];
-    const n=Math.floor(w*h/20000);
-    for(let i=0;i<n;i++){
-      const sx=Math.random()*w,sy=Math.random()*h;
-      const horiz=Math.random()>.5;
-      const len=60+Math.random()*240;
-      const turn=Math.random()>.55;
-      const turnLen=20+Math.random()*60;
-      const turnDir=Math.random()>.5?1:-1;
-      const dot1=Math.random()>.4;
-      const dot2=Math.random()>.5;
-      const glow=Math.random()>.65;
-      segs.push({sx,sy,horiz,len,turn,turnLen,turnDir,dot1,dot2,glow,
-        phase:Math.random()*6.28,speed:.2+Math.random()*.6,
-        base:.06+Math.random()*.1});
-    }
-  }
-
-  function draw(t){
-    x.clearRect(0,0,w,h);
-    const T=t*.001;
-    for(const s of segs){
-      const pulse=(Math.sin(T*s.speed+s.phase)*.5+.5);
-      const a=s.base*(.3+pulse*.7);
-      x.strokeStyle=`rgba(0,232,162,${a})`;
-      x.lineWidth=1;
-      x.beginPath();
-      let ex,ey;
-      if(s.horiz){
-        x.moveTo(s.sx,s.sy);x.lineTo(s.sx+s.len,s.sy);
-        ex=s.sx+s.len;ey=s.sy;
-        if(s.turn){x.lineTo(ex,ey+s.turnLen*s.turnDir);ey+=s.turnLen*s.turnDir}
-      }else{
-        x.moveTo(s.sx,s.sy);x.lineTo(s.sx,s.sy+s.len);
-        ex=s.sx;ey=s.sy+s.len;
-        if(s.turn){x.lineTo(ex+s.turnLen*s.turnDir,ey);ex+=s.turnLen*s.turnDir}
-      }
-      x.stroke();
-
-      x.fillStyle=`rgba(0,232,162,${a*1.8})`;
-      if(s.dot1){x.fillRect(s.sx-2,s.sy-2,4,4)}
-      if(s.dot2){x.fillRect(ex-2,ey-2,4,4)}
-
-      if(s.glow&&pulse>.65){
-        x.beginPath();x.arc(ex,ey,3.5,0,6.28);
-        x.fillStyle=`rgba(0,232,162,${a*2.5})`;x.fill();
-        x.beginPath();x.arc(ex,ey,8,0,6.28);
-        x.fillStyle=`rgba(0,232,162,${a*.5})`;x.fill();
-      }
-    }
-    requestAnimationFrame(draw);
-  }
-
-  resize();requestAnimationFrame(draw);
-  addEventListener('resize',resize);
-})();
-
-/* ===== REVEAL ON SCROLL ===== */
+/* Reveal on scroll */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script>
